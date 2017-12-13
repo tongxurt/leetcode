@@ -1,3 +1,4 @@
+# coding=utf-8
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         """
@@ -8,15 +9,17 @@ class Solution(object):
 
         start = 0
         while start < len(s):
-            li = list()
+            print start
+            li = ''  # 如果用list会超时  说明字符串拼接效率更高
+            tmp = len(s)
             for c in s[start:]:
                 if c in li:
+                    tmp = li.index(c) + 1
                     break
                 else:
-                    li.append(c)
+                    li += c
             result = max(result, len(li))
-            start = start + 1
-
+            start += tmp
         return result
 
 
