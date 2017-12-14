@@ -21,6 +21,7 @@ class Solution(object):
             start += tmp
         return result
 
+    # 别人的解法  效率高
     def lengthOfLongestSubstring2(self, s):
         """
         :type s: str
@@ -36,16 +37,18 @@ class Solution(object):
             while j <= len(s):
                 if s[j] not in s[i:j]:
                     if j == len(s) - 1:
-                        if len(substr) < len(s[i:j +1]):
+                        if len(substr) < len(s[i:j + 1]):
                             substr = s[i:j + 1]
-                        return len(substr)
+                        return substr
                     j += 1
                 else:
                     if len(s[i:j]) > len(substr):
                         substr = s[i:j]
-                    i += 1
-        return len(substr)
+                    # i += 1
+                    i += s[i:j].find(s[j]) + 1 # 再别人的基础上改进
+        return substr
+
 
 so = Solution()
-print so.lengthOfLongestSubstring('abccsdvbcnmc')
-print so.lengthOfLongestSubstring2('abccsdvbcnmc')
+# print so.lengthOfLongestSubstring('abccsdvbcnmc')
+print so.lengthOfLongestSubstring2('abcabc')
