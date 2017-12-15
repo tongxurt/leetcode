@@ -1,5 +1,8 @@
 class Solution(object):
 
+    """
+    O(n)
+    """
     def mergeTwoArrays(self, num1, num2):
         i = 0
         j = 0
@@ -10,6 +13,12 @@ class Solution(object):
             return num2
         if l2 == 0:
             return num1
+
+        if num1[l1 - 1] <= num2[0]:
+            return num1 + num2
+
+        if num2[l2 - 1] < num1[0]:
+            return num2 + num1
 
         res = []
         while i < l1 and j < l2 :
@@ -52,9 +61,11 @@ class Solution(object):
         else:
             return float(num[i-1])
 
+    """ ************************** """
 
 a = [1,2,4,6,8]
 b = [2,5,7,11]
 
 s = Solution()
 print s.findMedianSortedArrays(a, b)
+print s.mergeTwoArrays2(a, b)
