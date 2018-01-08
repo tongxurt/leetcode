@@ -23,10 +23,16 @@ db = MySQLdb.connect("localhost","root","ld3RjS1yYp_O","test" )
 cursor = db.cursor()
 # SQL 插入语句
 sql_stu = """INSERT INTO stu(name, age) VALUES ('%s', '%s')"""
+sql_sco = """INSERT INTO sco(name, stu_id, score) VALUES ('%s', '%s', '%s')"""
 try:
    # 执行sql语句
    for i in range(100000):
        _sql = sql_stu % ('name' + str(i), random.randint(1, 100))
+       print _sql
+       cursor.execute(_sql)
+
+   for i in range(1000000):
+       _sql = sql_sco % ('sco' + str(i), str(random.randint(1, 200)), str(random.randint(1, 200)))
        print _sql
        cursor.execute(_sql)
    # 提交到数据库执行
